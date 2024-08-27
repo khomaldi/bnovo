@@ -22,8 +22,11 @@ services:
     db:
         image: postgres:16-alpine
         environment:
-            POSTGRES_USERNAME: user
+            POSTGRES_DB: db
+            POSTGRES_USER: user
             POSTGRES_PASSWORD: user
+        ports:
+            - "5432:5432"
         networks:
             - api
 
