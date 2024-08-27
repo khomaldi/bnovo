@@ -1,0 +1,31 @@
+services:
+    nginx:
+        build:
+            dockerfile: .deployment/docker/nginx/Dockerfile
+        networks:
+            - api
+        depends_on:
+            - api
+        ports:
+            - "80:80"
+
+    api:
+        build:
+            dockerfile: .deployment/docker/php/Dockerfile
+        environment:
+            APP_URL: http://api.local
+        volumes:
+            - "./:/app"
+        networks:
+            - api
+
+    db:
+        image: postgres:16-alpine
+        environment:
+            POSTGRES_USERNAME: user
+            POSTGRES_PASSWORD: user
+        networks:
+            - api
+
+networks:
+    api:
