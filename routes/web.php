@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 Route::view('/docs', 'docs');
+
 Route::get('/docs/manifest', static function () {
     $path = resource_path('docs/openapi.json');
 

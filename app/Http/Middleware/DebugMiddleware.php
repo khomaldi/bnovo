@@ -17,13 +17,14 @@ class DebugMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $startTime =  microtime(true);
         $memoryAtStart = memory_get_usage();
 
         $response = $next($request);
 
         $memoryAtEnd = memory_get_usage();
 
-        $time = round((microtime(true) - LARAVEL_START) * 1000);
+        $time = round((microtime(true) - $startTime) * 1000);
         $memory = round(($memoryAtEnd - $memoryAtStart) / 1024);
 
         $response->headers->set('X-Debug-Time', "{$time} ms");
