@@ -1,0 +1,274 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API",
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "http://api.local",
+            "description": "Local development server"
+        }
+    ],
+    "paths": {
+        "/guests": {
+            "post": {
+                "tags": [
+                    "Guests"
+                ],
+                "description": "Create a guest",
+                "requestBody": {
+                    "description": "Guest to create",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateGuest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Guest"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Guests"
+                ],
+                "description": "Returns all guests",
+                "responses": {
+                    "200": {
+                        "description": "Array of guests objects",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Guest"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/guests/{guestId}": {
+            "get": {
+                "tags": [
+                    "Guests"
+                ],
+                "description": "Returns the guest",
+                "parameters": [
+                    {
+                        "name": "guestId",
+                        "in": "path",
+                        "description": "Uuid of the guest",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "9cde7433-c587-4c3f-b6e3-6c7bb563ff66"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Guest object",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Guest"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Model not found"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Guests"
+                ],
+                "description": "Updates the guest",
+                "parameters": [
+                    {
+                        "name": "guestId",
+                        "in": "path",
+                        "description": "Uuid of the guest",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "9cde7433-c587-4c3f-b6e3-6c7bb563ff66"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Guest to update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateGuest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Guest object",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Guest"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Model not found"
+                    },
+                    "422": {
+                        "description": "Validation errors"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Guests"
+                ],
+                "description": "Deletes the guest",
+                "parameters": [
+                    {
+                        "name": "guestId",
+                        "in": "path",
+                        "description": "Uuid of the guest",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "9cde7433-c587-4c3f-b6e3-6c7bb563ff66"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "The guest has been deleted"
+                    },
+                    "404": {
+                        "description": "Model not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CreateGuest": {
+                "type": "object",
+                "required": [
+                    "first_name",
+                    "last_name",
+                    "phone"
+                ],
+                "properties": {
+                    "first_name": {
+                        "type": "string",
+                        "example": "Georgii"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "Khomaldishvili"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "+79019029034"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "country": {
+                        "type": "string",
+                        "example": "RU"
+                    }
+                }
+            },
+            "UpdateGuest": {
+                "type": "object",
+                "properties": {
+                    "first_name": {
+                        "type": "string",
+                        "example": "Georgii"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "Khomaldishvili"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "+79019029034"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "country": {
+                        "type": "string",
+                        "example": "RU"
+                    }
+                }
+            },
+            "Guest": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "example": "Georgii"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "Khomaldishvili"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "+79019029034"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "country": {
+                        "type": "string",
+                        "example": "RU"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            }
+        }
+    }
+}
