@@ -5,6 +5,10 @@
 
 Запустить: `docker-compose up -d`
 
+### Preparation
+
+Миграции: выполнить внутри контейнера `php artisan migrate`
+
 ### Tests
 Добавлено по одному happy-path тесту на каждый роут группы `guests`
 
