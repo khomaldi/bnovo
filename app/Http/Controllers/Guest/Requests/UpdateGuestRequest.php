@@ -29,7 +29,7 @@ class UpdateGuestRequest extends FormRequest
             'last_name' => 'nullable|string|between:1,100',
             'phone' => 'nullable|phone|unique:guests,phone',
             'email' => 'nullable|email|unique:guests,email',
-            'country' => 'nullable|string|size:2',
+            'country' => 'nullable|string|size:2|uppercase',
         ];
     }
 

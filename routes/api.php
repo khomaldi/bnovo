@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\GuestController;
+use App\Http\Controllers\Guest\GuestController;
 
 Route::prefix('guests')->group(function (): void {
     Route::post('/', [GuestController::class, 'create']);

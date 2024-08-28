@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Guest;
 
 use Throwable;
 use App\Models\Guest;
 use App\Dto\GuestDto;
 use Illuminate\Http\JsonResponse;
 use App\Services\Guest\GuestService;
+use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Controllers\Guest\Resources\GuestResource;
 use App\Http\Controllers\Guest\Requests\CreateGuestRequest;

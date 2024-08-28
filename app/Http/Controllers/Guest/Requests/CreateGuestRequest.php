@@ -29,7 +29,7 @@ class CreateGuestRequest extends FormRequest
             'last_name' => 'required|string|between:1,100',
             'phone' => 'required|phone|unique:guests,phone',
             'email' => 'nullable|email|unique:guests,email',
-            'country' => 'nullable|string|size:2',
+            'country' => 'nullable|string|size:2|uppercase',
         ];
     }
 
