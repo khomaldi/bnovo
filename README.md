@@ -7,6 +7,18 @@
 
 ### Preparation
 
+В `.env` файле установить следующие значения
+```
+APP_URL=http://api.local
+
+DB_CONNECTION=pgsql
+DB_HOST=db
+DB_PORT=5432
+DB_DATABASE=db
+DB_USERNAME=user
+DB_PASSWORD=user
+```
+
 Миграции: выполнить внутри контейнера `php artisan migrate`
 
 ### Tests
